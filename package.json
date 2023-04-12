@@ -1,0 +1,43 @@
+{
+  "name": "curve-gauge-distributor",
+  "version": "1.0.0",
+  "description": "SDL Curve Gauge Distributor",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx hardhat node --network hardhat",
+    "test": "npx hardhat test --network hardhat",
+    "deploy": "ts-node --files scripts/deploy-curve-gauge-distributor.ts",
+    "compile": "npx hardhat compile",
+    "tsc": "tsc",
+    "prettier": "prettier --check \"contracts/**/*.sol*\" \"test/**/*.ts*\" \"scripts/**/*.ts*\"",
+    "prettier:fix": "prettier --write \"contracts/**/*.sol*\" \"test/**/*.ts*\" \"scripts/**/*.ts*\"",
+    "solhint": "solhint contracts/**/*.sol"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "@openzeppelin/hardhat-upgrades": "^1.21.0",
+    "@typechain/ethers-v5": "^9.0.0",
+    "@typechain/hardhat": "^4.0.0",
+    "@types/chai": "^4.3.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.14",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.0",
+    "ethereumjs-util": "^7.1.5",
+    "ethers": "^5.5.4",
+    "fs-extra": "^11.1.0",
+    "hardhat": "^2.11.2",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.6",
+    "ts-node": "^10.4.0",
+    "typechain": "^7.0.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.0"
+  }
+}
