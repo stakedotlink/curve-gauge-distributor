@@ -26,6 +26,7 @@ describe('SDLGaugeDistributor', () => {
       [stLINKCurveGauge.address, ixETHCurveGauge.address],
       [toEther(2000), toEther(1000)],
       7 * 86400 - 3600,
+      0,
       sdlToken.address,
     ])) as SDLGaugeDistributor
 

@@ -34,8 +34,17 @@ contract SDLGaugeDistributor is Ownable {
     error NoRewardsToAdd(uint256 gaugeIndex);
     error InvalidUpdateThreshold(uint256 updateThreshold);
     error UpdateThresholdNotMet();
+    error InvalidLastUpdated();
 
-    constructor(address[] memory _gauges, uint256[] memory _weeklyRewards, uint256 _updateThreshold, address _sdlToken) {
+    constructor(
+        address[] memory _gauges,
+        uint256[] memory _weeklyRewards,
+        uint256 _updateThreshold,
+        uint256 _lastUpdated,
+        address _sdlToken
+    ) {
+        if (_lastUpdated > block.timestamp) revert InvalidLastUpdated();
+        lastUpdated = _lastUpdated;
         setUpdateThreshold(_updateThreshold);
         sdlToken = IERC20(_sdlToken);
         for (uint256 i = 0; i < _gauges.length; i++) {

@@ -7,6 +7,7 @@ const gauges: any = [
 ]
 const weeklyRewards: any = [0, 0] // weekly SDL reward amount for each gauge (stLINK, ixETH)
 const updateThreshold = 86400 * 7 - 3600 // minimum amount of time between gauge reward updates (seconds)
+const lastUpdated = 1681390295 // timestamp of last gauge reward update (seconds)
 const sdlToken = '0xA95C5ebB86E0dE73B4fB8c47A45B792CFeA28C23' // SDL token address
 
 async function main() {
@@ -14,6 +15,7 @@ async function main() {
     gauges,
     weeklyRewards,
     updateThreshold,
+    lastUpdated,
     sdlToken,
   ])
   console.log('SDLGaugeDistributor deployed: ', distributor.address)
