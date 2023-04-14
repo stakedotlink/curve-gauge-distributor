@@ -95,6 +95,19 @@ contract SDLGaugeDistributor is Ownable {
     }
 
     /**
+     * @notice Updates all gauge rewards (bypasses update threshold)
+     */
+    function updateGaugeRewards() external {
+        uint256 period = block.timestamp - lastUpdated > WEEK ? WEEK : block.timestamp - lastUpdated;
+
+        for (uint256 i = 0; i < gauges.length; i++) {
+            _refreshGaugeReward(i, period);
+        }
+
+        lastUpdated = block.timestamp;
+    }
+
+    /**
      * @notice Executes an arbitrary function from this contract
      * @param _target target address of the call
      * @param _data encoded function call
