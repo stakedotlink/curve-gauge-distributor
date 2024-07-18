@@ -1,12 +1,12 @@
 import { BigNumber } from 'ethers'
 import { toEther, deploy, getAccounts, fromEther } from './utils/helpers'
 import { assert, expect } from 'chai'
-import { CurveGaugeMock, SDLToken, SDLGaugeDistributor } from '../typechain-types'
+import { CurveGaugeMock, SDLGaugeDistributor, ERC677 } from '../typechain-types'
 import { ethers } from 'hardhat'
 import { time } from '@nomicfoundation/hardhat-network-helpers'
 
 describe('SDLGaugeDistributor', () => {
-  let sdlToken: SDLToken
+  let sdlToken: ERC677
   let stLINKCurveGauge: CurveGaugeMock
   let ixETHCurveGauge: CurveGaugeMock
   let distributor: SDLGaugeDistributor
@@ -17,7 +17,7 @@ describe('SDLGaugeDistributor', () => {
   })
 
   beforeEach(async () => {
-    sdlToken = (await deploy('SDLToken', ['SDL', 'SDL', 1000000000])) as SDLToken
+    sdlToken = (await deploy('ERC677', ['SDL', 'SDL', 1000000000])) as ERC677
 
     stLINKCurveGauge = (await deploy('CurveGaugeMock', [sdlToken.address])) as CurveGaugeMock
     ixETHCurveGauge = (await deploy('CurveGaugeMock', [sdlToken.address])) as CurveGaugeMock
@@ -78,7 +78,7 @@ describe('SDLGaugeDistributor', () => {
     await distributor.execute(
       sdlToken.address,
       (
-        await ethers.getContractFactory('SDLToken')
+        await ethers.getContractFactory('ERC677')
       ).interface.encodeFunctionData('transfer', [accounts[1], toEther(100)])
     )
     assert.equal(fromEther(await sdlToken.balanceOf(distributor.address)), 9900)
